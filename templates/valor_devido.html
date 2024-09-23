@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valor Devido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pedidos.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}">
+            <button class="home" type="button">
+                <i class="fa-solid fa-house"></i>
+            </button>
+        </a>
+        
+        <h1>CONTROLE DE COBRANÇAS</h1>
+              
+                <div class="search-bar">
+                    <form action="{{ url_for('valor_devido') }}" method="GET">
+                        <input type="text" name="search" placeholder="Pesquisar cliente" class="search-input">
+                        <button type="submit" class="search-btn"><i class="fa-solid fa-search"></i></button>
+                    </form>
+                </div>
+        <ul>
+            {% for cliente_id, cliente_nome, valor_total, extrato in clientes %}
+                <li>
+                    <div class="nome"><strong>{{ cliente_nome }}</strong></div>
+                    <p class="vt">VALOR TOTAL: R$ {{ valor_total|round(2) }}</p>
+                   
+                    <form action="/excluir_valor_devido/{{ cliente_id }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Marcar como pago?');">
+                            <i class="fa-solid fa-check"></i>
+                        </button>
+                    </form>
+                    {% for item in extrato %}
+                    <p class="data">PRAZO PARA O PAGAMENTO: {{ item[3] }}</p>
+                    {% endfor %}
+                    <ul>
+                        {% for item in extrato %}
+                            <li class="box">
+                                <p class="inf">PRODUTOS: {{ item[0] }}</p>
+                                <p class="vl">VALOR TOTAL DO PEDIDO: R$ {{ item[1]|round(2) }}</p>
+                                <p>DATA DO PEDIDO: {{ item[2] }}</p>
+                                
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

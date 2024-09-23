@@ -1,0 +1,115 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.data {
+    color: rgb(0, 186, 0);
+    background-color: rgb(218, 218, 218);
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bolder;
+}
+
+.vt {
+    color: red;
+    font-weight: bold;
+}
+
+ul {
+    display: block;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333333;
+    margin: 5px 0;
+    background-color: #fff;
+    position: relative;
+    font-size: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.361);
+}
+
+li button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 50px; 
+    color: white;
+    background-color: rgb(233, 0, 0);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+li button i {
+    font-size: 1.2em;
+}
+
+li button:hover{
+    transform: translateX(-10px); 
+    box-shadow: 10px 0 0px rgb(233, 0, 0);
+}
+li .box {
+    width: 50%;
+    border-width: 1px;
+    border-color: #535353;
+}
+.home{
+    border:1px solid black;
+    color: white;
+    background-color:darkred;;
+   font-size: 30px;
+   cursor: pointer;
+   border-radius: 50px;
+   padding: 10px;
+   box-shadow: 0px 0 5px  rgb(0, 0, 0);
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.home:hover{
+    transform: translateY(-5px);
+}
+.search-bar{
+    position:relative;
+     top: 20px; 
+    left: 0;
+    padding: 4px;
+    margin-top: 1%;
+    margin-bottom: 2%;
+   
+}   
+.search-btn{
+    background-color: darkred;
+    color: #f4f4f4;cursor: pointer;
+    
+}
+.prod{
+    
+    font-weight: bold;
+  
+}
+.vl{
+    color: #fff;
+    font-weight: bold;
+    background-color:darkred;
+    border-radius: 5px;
+    padding: 4px;
+}

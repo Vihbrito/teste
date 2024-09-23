@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIENTES REGISTRADOS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/vc.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('index') }}">
+            <button class="home" type="button">
+                <i class="fa-solid fa-house"></i>
+            </button>
+        </a>
+        <div class="search-bar">
+            <form action="{{ url_for('clientes') }}" method="GET">
+                <input type="text" name="search" placeholder="Pesquisar cliente" class="search-input">
+                <button type="submit" class="search-btn"><i class="fa-solid fa-search"></i></button>
+            </form>
+        </div>
+        <h1>CLIENTES REGISTRADOS</h1>
+        <ul>
+            {% for cliente in clientes %}
+                <li>
+                    {{ cliente[1] }} 
+                    <form action="/excluir_cliente/{{ cliente[0] }}" method="POST" style="display:inline;">
+                        <button type="submit" onclick="return confirm('Tem certeza que deseja excluir este cliente?');"> <i class="fas fa-trash-alt"></i></button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

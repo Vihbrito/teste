@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GESTÃO DE VENDAS</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>GESTÃO DE VENDAS</h1>
+        
+        <div class="navbar">
+            <a href="{{ url_for('clientes') }}"  >CLIENTES REGISTRADOS</a>
+            <a href="{{ url_for('produtos') }}" >PRODUTOS REGISTRADOS</a>
+            <a href="{{ url_for('valor_devido') }}" >CONTROLE DE COBRANÇAS</a>
+        </div>
+
+        <h2>REGISTRAR CLIENTE</h2>
+        <form action="/adicionar_cliente" method="POST" id="form-cliente">
+            <label for="nome">Nome do Cliente:</label>
+            <input type="text" id="nome" name="nome" required>
+            <button type="submit">Adicionar Cliente</button>
+        </form>
+        
+        <h2>REGISTRAR PRODUTO</h2>
+        <form action="/adicionar_produto" method="POST" id="form-produto">
+            <label for="nome_produto">Nome do Produto:</label>
+            <input type="text" id="nome_produto" name="nome_produto" required>
+            <label for="preco_produto">Preço:</label>
+            <input type="number" id="preco_produto" name="preco_produto" step="0.01" required>
+            <button type="submit">Adicionar Produto</button>
+        </form>
+        
+        <h2>REGISTRAR PEDIDOS</h2>
+<form action="/registrar_pedido" method="POST" id="form-pedido">
+    <label for="id_cliente">Cliente:</label>
+    <select id="id_cliente" name="id_cliente" required>
+        <option value="">Selecione um cliente</option>
+        {% for cliente in clientes %}
+            <option value="{{ cliente[0] }}">{{ cliente[1] }}</option>
+        {% endfor %}
+    </select>
+    
+    <div id="produtos-container">
+        <div class="produto-item">
+            <label for="id_produto_1">Produto:</label>
+            <select id="id_produto_1" name="id_produto[]" required>
+                <option value="">Selecione um produto</option>
+                {% for produto in produtos %}
+                    <option value="{{ produto[0] }}">{{ produto[1] }} (R$ {{ produto[2] }})</option>
+                {% endfor %}
+            </select>
+            
+            <label for="quantidade_1">Quantidade:</label>
+            <input type="number" id="quantidade_1" name="quantidade[]" required>
+        </div>
+    </div>
+    
+    <button type="button" id="add-produto">Adicionar mais produtos</button>
+    <button type="submit">Registrar Pedido</button>
+</form>
+        
+        <script>
+            
+            function validarFormulario(form) {
+                let inputs = form.querySelectorAll('input, select');
+                let valido = true;
+        
+                inputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        input.style.border = '2px solid red'; 
+                        valido = false;
+                    } else {
+                        input.style.border = '';  
+                    }
+                });
+        
+                return valido;
+            }
+        
+          
+            document.getElementById('form-cliente').addEventListener('submit', function(event) {
+                if (!validarFormulario(this)) {
+                    event.preventDefault();  
+                }
+            });
+        
+            document.getElementById('form-produto').addEventListener('submit', function(event) {
+                if (!validarFormulario(this)) {
+                    event.preventDefault();  
+                }
+            });
+        
+            document.getElementById('form-pedido').addEventListener('submit', function(event) {
+                if (!validarFormulario(this)) {
+                    event.preventDefault();  
+                }
+            });
+            document.getElementById('add-produto').addEventListener('click', function() {
+                const container = document.getElementById('produtos-container');
+                const index = container.children.length + 1;
+                const newItem = document.createElement('div');
+                newItem.classList.add('produto-item');
+                newItem.innerHTML = `
+                    <label for="id_produto_${index}">Produto:</label>
+                    <select id="id_produto_${index}" name="id_produto[]" required>
+                        <option value="">Selecione um produto</option>
+                        {% for produto in produtos %}
+                            <option value="{{ produto[0] }}">{{ produto[1] }} (R$ {{ produto[2] }})</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <label for="quantidade_${index}">Quantidade:</label>
+                    <input type="number" id="quantidade_${index}" name="quantidade[]" required>
+                `;
+                container.appendChild(newItem);
+            });
+        </script>
+        
+    </div>
+</body>
+</html>

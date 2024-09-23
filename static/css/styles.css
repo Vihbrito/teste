@@ -1,0 +1,140 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; 
+    font-family: "Cabin", sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.632);
+}
+
+h1 {
+    color: darkred;
+    border-bottom: 2px solid darkred;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: darkred;
+}
+
+
+form {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="number"], select {
+    padding: 8px;
+    margin-bottom: 20px ;
+    width: 98%;
+    border: 2px solid #b3b3b3;
+    border-radius: 4px;
+}
+
+.out {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    
+}
+
+li {
+    flex: 1 1 30%; 
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px;
+    background-color: #fff;
+    position: relative;
+}
+
+
+button {
+    background-color: darkred;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background-color: red;
+    box-shadow: 0px 0 10px rgba(100, 0, 0, 0.724);
+}
+
+@media (max-width: 768px) {
+    li {
+        flex: 1 1 45%; 
+    }
+}
+
+@media (max-width: 480px) {
+    li {
+        flex: 1 1 100%; 
+    }
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+.out {
+    margin-top: 20px;
+}
+.out ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+.out li {
+    flex: 1 1 30%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin: 5px;
+    background-color: #fff;
+}.navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: darkred;
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 5px;
+    border: #b94444 outset 2px;
+   
+}
+.navbar a:hover {
+    background-color: #b94444;
+}
+#add-produto{
+    background-color: rgb(40, 109, 0);
+}
+#add-produto:hover{
+    background-color: rgb(38, 255, 0);
+    box-shadow: 0px 0 10px rgba(4, 82, 0, 0.724);
+    color:black
+}
